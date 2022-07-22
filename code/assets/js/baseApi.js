@@ -1,6 +1,5 @@
 // 统一拼接路劲
 $.ajaxPrefilter(function (options) {
-    console.log(options.url);
     options.url = 'http://www.liulongbin.top:3007' + options.url;
     //统一为有权限接口设置headers请求头
     if (options.url.indexOf('/my/') !== -1) {
@@ -11,7 +10,6 @@ $.ajaxPrefilter(function (options) {
     
     //全局统一挂载complete
     options.complete = function (res) {
-        console.log(res);
         if (res.responseJSON) {
             if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
                 //清空本地token
